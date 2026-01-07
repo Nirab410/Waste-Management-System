@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EcoWaste | Sustainable Waste Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rethink sans', Tahoma, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        header {
+            background: #FEFEFE;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgb(0, 0, 0);
+        }
+
+        header h1 {
+            font-size: 26px;
+        }
+
+        nav a {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+        }
+        .login-btn {
+            background-color: #2fb463; /* green */
+            color: #000;
+            padding: 12px 40px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            background-color: rgb(210, 245, 205);
+        }
+
+      .navber{
+            max-width: 900px;
+            padding: 40px;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #dff3ea;
+        color: #1f7f57;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 25px;
+    }
+
+    .badge span {
+        font-size: 16px;
+    }
+
+    h1 {
+        font-size: 56px;
+        font-weight: 800;
+        line-height: 1.1;
+        color: #000;
+        margin-bottom: 20px;
+    }
+
+    h1 .green {
+        color: #27ae60;
+    }
+
+    p {
+        max-width: 600px;
+        font-size: 18px;
+        color: #333;
+        line-height: 1.6;
+    }
+
+        /* Awareness Section */
+        .awareness {
+            padding: 60px;
+            background: white;
+        }
+
+        .awareness h2 {
+            text-align: center;
+            color: #2e7d32;
+            margin-bottom: 20px;
+        }
+
+        .awareness p {
+            text-align: center;
+            max-width: 800px;
+            margin: auto;
+            margin-bottom: 40px;
+        }
+
+        .cards {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .card {
+            background: #f1f8f4;
+            padding: 30px;
+            width: 300px;
+            border-radius: 8px;
+        }
+
+        .card h3 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+
+        /* Access Portals */
+.portals h2 {
+    text-align: center;
+}
+.portals{
+      padding: 40px;
+}
+
+.portal-grid {
+      margin: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 2fr);
+    gap: 80px;
+}
+
+/* CARD */
+.portal {
+    color: #fff;
+    padding: 28px;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.portal1{
+      background-color: #24A058;
+      border-radius: 10px;
+      margin-bottom: 45px;
+}
+.portal2{
+      background-color:#3170EC;
+      border-radius: 10px;
+      margin-top: 45px;
+      
+}
+.portal3{
+      background-color: #9842E7;
+      border-radius: 10px;
+      margin-bottom: 45px;
+}
+.portal4{
+      background-color: #E46012;
+      border-radius: 10px;
+      margin-top: 45px;
+}
+/* --- THE STAGGER EFFECT --- */
+/* This pushes the 2nd and 4th cards down */
+
+/* ICON */
+.portal .icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 10px;
+}
+
+.portal h4 {
+    font-size: 26px;
+    margin: 10px 0;
+}
+
+.portal p {
+    font-size: 15px;
+    line-height: 1.6;
+    opacity: 0.95;
+}
+
+/* BUTTON */
+.portal .btn {
+    margin-top: 20px;
+    border: 2px solid #000;
+    background: transparent;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: fit-content;
+}
+
+.portal .btn span {
+    font-size: 18px;
+}
+        /* Footer */
+        footer {
+            background: #000000;
+            color: white;
+            padding: 50px 60px;
+            opacity: 1;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 30px;
+            color: white;
+        }
+        .footer-grid p{
+            color:White;
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+            
+        }
+
+        footer a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <h1>EcoWaste</h1>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="#footer">About Us</a>
+        <a href="#footer">Contact</a>
+    </nav>
+    <nav class="login">
+              <a href="#login" class="login-btn">Login</a>
+      </nav>
+</header>
+
+<!-- Hero Section -->
+<div class="navber">
+    <div class="badge">
+        <span>♻️</span>
+        Sustainable Future
+    </div>
+
+    <h1>
+        Smart Waste<br>
+        Collection for<br>
+        <span class="green">a Cleaner Tomorrow</span>
+    </h1>
+
+    <p>
+        Manage waste efficiently with modern technology
+        and collaborate with your community for a
+        sustainable environment.
+    </p>
+</div>
+
+<!-- Awareness Section -->
+<section class="awareness">
+    <h2>Waste Awareness</h2>
+    <p>
+        Understanding proper waste management is crucial for our environment.
+        Every action counts towards building a sustainable future for generations to come.
+    </p>
+
+    <div class="cards">
+        <div class="card">
+            <img src="reduce.png" alt="img">
+            <h3>Reduce</h3>
+            <p>
+                Minimize waste generation by choosing products with less packaging
+                and avoiding single-use items.
+            </p>
+        </div>
+
+        <div class="card">
+            <img src="reuse.png" alt="img">
+            <h3>Reuse</h3>
+            <p>
+                Give items a second life before discarding them. Donate unused goods
+                and choose reusable alternatives.
+            </p>
+        </div>
+
+        <div class="card">
+            <img src="recycle.png" alt="img">
+            <h3>Recycle</h3>
+            <p>
+                Transform waste into valuable resources by properly sorting materials
+                like paper, plastic, glass, and metal.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Access Portals -->
+<section class="portals" id="login">
+    <h2>Access Portals</h2>
+
+    <div class="portal-grid">
+
+        <div class="portal1">
+            <div class="portal">
+            <img src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png" class="icon">
+            <h4>Admin Portal</h4>
+            <p>Manage system settings, users, and monitor overall operations.</p>
+            <a href="login.html" class="btn" style="text-decoration: none;">
+    Access Portal <span>→</span>
+  </a>
+        </div>
+        </div>
+
+        <div class="portal2">
+            <div class="portal">
+            <img src="https://cdn-icons-png.flaticon.com/512/3596/3596091.png" class="icon">
+            <h4>Collector Portal</h4>
+            <p>View assigned routes, update collection status, and manage tasks.</p>
+           <a href="login.html" class="btn" style="text-decoration: none;">
+    Access Portal <span>→</span>
+  </a>
+        </div>
+        </div>
+
+        <div class="portal3">
+            <div class="portal">
+            <img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" class="icon">
+            <h4>Resident Portal</h4>
+            <p>Schedule pickups, report issues, and track collection history.</p>
+            <a href="login.html" class="btn" style="text-decoration: none;">
+    Access Portal <span>→</span>
+  </a>
+        </div>
+        </div>
+
+        <div class="portal4">
+            <div class="portal">
+            <img src="https://cdn-icons-png.flaticon.com/512/3050/3050525.png" class="icon">
+            <h4>Recycling Center</h4>
+            <p>Manage inventory, track processing, and coordinate pickups.</p>
+            <a href="login.html" class="btn" style="text-decoration: none;">
+    Access Portal <span>→</span>
+  </a>
+        </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="footer-grid">
+        <div>
+            <h3>EcoWaste</h3>
+            <p>
+                Building a sustainable future through smart waste management
+                and community collaboration.
+            </p>
+        </div>
+
+        <div>
+            <h3>Quick Links</h3>
+            <a href="#">Home</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+        </div>
+
+        <div>
+            <h3>Help Center</h3>
+            <a href="#">FAQs</a>
+            <a href="#">Support</a>
+        </div>
+
+        <div>
+            <h3>Contact Info</h3>
+            <p>Email: info@ecowaste.com</p>
+            <p>Phone: +1 (555) 123-4567</p>
+            <p>Address: 123 Green Street, Eco City</p>
+        </div>
+    </div>
+
+    <div class="copyright">
+        © 2026 EcoWaste Management System. All rights reserved.
+    </div>
+</footer>
+
+</body>
+</html>

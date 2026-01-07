@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoWaste | Sign Up</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rethink sans', Tahoma, sans-serif;
+        }
+
+        /* Navbar */
+        header {
+            background: #FEFEFE;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgb(0, 0, 0);
+        }
+
+        header h1 {
+            font-size: 26px;
+        }
+
+        nav a {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+        }
+
+        .body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #ffffff;
+            padding: 40px 0; /* Added padding for better mobile view */
+        }
+
+        /* Sign Up Card */
+        .signup-card {
+            background-color: #f2f2f2;
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            text-align: left;
+            border-radius: 4px;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        p.subtitle {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        /* Form Elements */
+        .input-field {
+            width: 100%;
+            background-color: #dfe6d9;
+            border: none;
+            border-radius: 25px; /* More rounded to match the image */
+            padding: 15px 25px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        /* Button Styling */
+        .signup-btn {
+            width: 100%;
+            background-color: #96c078;
+            color: #000;
+            border: none;
+            border-radius: 25px; /* More rounded to match the image */
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .signup-btn:hover {
+            background-color: #85ac69;
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .footer-text a {
+            color: #000;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #000000;
+            color: white;
+            padding: 50px 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 30px;
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+        }
+
+        footer a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a style="text-decoration: none; color: black;" href="home.html"><h1>EcoWaste</h1></a>
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="#footer">About Us</a>
+            <a href="#footer">Contact</a>
+        </nav>
+    </header>
+
+    <div class="body">
+        <div class="signup-card">
+            <h1>Sign Up</h1>
+            <p class="subtitle">Please fill your details for sign up</p>
+
+            <form>
+                <input type="text" class="input-field" placeholder="First name" required>
+                <input type="text" class="input-field" placeholder="Last name" required>
+                <input type="tel" class="input-field" placeholder="Phone number" required>
+                <input type="email" class="input-field" placeholder="email" required>
+                <input type="password" class="input-field" placeholder="Password" required>
+                
+                <button type="submit" class="signup-btn">Sign up</button>
+            </form>
+            
+            <p class="footer-text">
+                Already have an account? <a href="login.html">Log In</a>
+            </p>
+        </div>
+    </div>
+
+    <footer id="footer">
+        <div class="footer-grid">
+            <div>
+                <h3>EcoWaste</h3>
+                <p>Building a sustainable future through smart waste management and community collaboration.</p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <a href="#">Home</a>
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+            </div>
+            <div>
+                <h3>Help Center</h3>
+                <a href="#">FAQs</a>
+                <a href="#">Support</a>
+            </div>
+            <div>
+                <h3>Contact Info</h3>
+                <p>Email: info@ecowaste.com</p>
+                <p>Phone: +1 (555) 123-4567</p>
+                <p>Address: 123 Green Street, Eco City</p>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 EcoWaste Management System. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

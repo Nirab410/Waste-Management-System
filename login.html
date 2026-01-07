@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>EcoWaste | Sustainable Waste Management</title>
+      <style>
+            * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rethink sans', Tahoma, sans-serif;
+        }
+        /* Navbar */
+        header {
+            background: #FEFEFE;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgb(0, 0, 0);
+        }
+
+        header h1 {
+            font-size: 26px;
+        }
+
+        nav a {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+        }
+      .navber{
+            max-width: 900px;
+            padding: 40px;
+      }
+      .body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #ffffff;
+        }
+        /* Login Container */
+        .login-card {
+            background-color: #f2f2f2;
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            text-align: left;
+            border-radius: 4px; /* Slight rounding for the card itself */
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        p.subtitle {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        /* Form Elements */
+        .input-field {
+            width: 100%;
+            background-color: #dfe6d9;
+            border: none;
+            border-radius: 20px;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .forgot-password {
+            display: block;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: #000;
+            text-decoration: underline;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        .login-btn {
+            width: 100%;
+            background-color: #96c078;
+            color: #000;
+            border: none;
+            border-radius: 20px;
+            padding: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background-color: #85ac69;
+        }
+               /* Footer */
+        footer {
+            background: #000000;
+            color: white;
+            padding: 50px 60px;
+            opacity: 1;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 30px;
+            color: white;
+        }
+        .footer-grid p{
+            color:White;
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+            
+        }
+
+        footer a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+      </style>
+</head>
+<body>
+      <!--Header-->
+      <header>
+            <a style="text-decoration: none;color: black;" href="home.html" ><h1>EcoWaste</h1></a>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="#footer">About Us</a>
+        <a href="#footer">Contact</a>
+    </nav>
+
+</header>
+      <!--Header-->
+      <div class="body">
+            <div class="login-card">
+        <h1>Log In</h1>
+        <p class="subtitle">Please fill your details for log in</p>
+
+        <form>
+            <input type="text" class="input-field" placeholder="Username or email">
+            <input type="password" class="input-field" placeholder="Password">
+            
+            <a href="#" class="forgot-password">Forgotten Password?</a>
+            
+            <button type="submit" class="login-btn">Log In</button>
+        </form>
+        <p class="footer-text">
+            Don't have an account? <a style="text-decoration: none;" href="signup.html">Sign Up</a>
+        </p>
+    </div>
+      </div>
+      <!-- Footer -->
+<footer id="footer">
+    <div class="footer-grid">
+        <div>
+            <h3>EcoWaste</h3>
+            <p>
+                Building a sustainable future through smart waste management
+                and community collaboration.
+            </p>
+        </div>
+
+        <div>
+            <h3>Quick Links</h3>
+            <a href="#">Home</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+        </div>
+
+        <div>
+            <h3>Help Center</h3>
+            <a href="#">FAQs</a>
+            <a href="#">Support</a>
+        </div>
+
+        <div>
+            <h3>Contact Info</h3>
+            <p>Email: info@ecowaste.com</p>
+            <p>Phone: +1 (555) 123-4567</p>
+            <p>Address: 123 Green Street, Eco City</p>
+        </div>
+    </div>
+
+    <div class="copyright">
+        © 2026 EcoWaste Management System. All rights reserved.
+    </div>
+</footer>
+</body>
+</html>
