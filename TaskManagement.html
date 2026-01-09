@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management</title>
+    <link rel="stylesheet" href="TaskManagement.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="page-title">Task Management</h1>
+        <p class="subtitle">Manage and monitor waste collection team</p>
+
+        <!-- Table -->
+        <div class="table-wrapper">
+            <table class="task-table">
+                <thead>
+                    <tr>
+                        <th>COLLECTOR NAME</th>
+                        <th>PHONE NUMBER</th>
+                        <th>ASSIGNED ZONE</th>
+                        <th>STATUS</th>
+                        <th>TODAY'S TASKS</th>
+                        <th>ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Row 1 -->
+                    <tr>
+                        <td>
+                            <div class="collector-info">
+                                <div class="avatar blue">SM</div>
+                                <div>
+                                    <div class="name">Sarah Johnson</div>
+                                    <div class="id">ID: COL001</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>+1 (541) 123-4567</td>
+                        <td>Zone A - Downtown</td>
+                        <td><span class="status-badge green">Active</span></td>
+                        <td><a href="#" class="task-link">12/15 completed</a></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="icon-btn">✏️</button>
+                                <button class="icon-btn">🗑️</button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Row 2 -->
+                    <tr>
+                        <td>
+                            <div class="collector-info">
+                                <div class="avatar green">MA</div>
+                                <div>
+                                    <div class="name">Maria Anderson</div>
+                                    <div class="id">ID: COL002</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>+1 (541) 765-4218</td>
+                        <td>Zone B - Residential</td>
+                        <td><span class="status-badge green">Active</span></td>
+                        <td><a href="#" class="task-link">8 / 12 completed</a></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="icon-btn">✏️</button>
+                                <button class="icon-btn">🗑️</button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Row 3 -->
+                    <tr>
+                        <td>
+                            <div class="collector-info">
+                                <div class="avatar purple">DC</div>
+                                <div>
+                                    <div class="name">David Chen</div>
+                                    <div class="id">ID: COL003</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>+1 (541) 456-7821</td>
+                        <td>Zone C - Industrial</td>
+                        <td><span class="status-badge red">Absent</span></td>
+                        <td>N/A</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="icon-btn">✏️</button>
+                                <button class="icon-btn">🗑️</button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Row 4 -->
+                    <tr>
+                        <td>
+                            <div class="collector-info">
+                                <div class="avatar orange">BB</div>
+                                <div>
+                                    <div class="name">Betty Brown</div>
+                                    <div class="id">ID: COL004</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>+1 (541) 901-9987</td>
+                        <td>Zone D - Commercial</td>
+                        <td><span class="status-badge green">Active</span></td>
+                        <td><a href="#" class="task-link">18/18 completed</a></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="icon-btn">✏️</button>
+                                <button class="icon-btn">🗑️</button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Row 5 -->
+                    <tr>
+                        <td>
+                            <div class="collector-info">
+                                <div class="avatar red">JW</div>
+                                <div>
+                                    <div class="name">James Wilson</div>
+                                    <div class="id">ID: COL005</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>+1 (541) 890-8761</td>
+                        <td>Zone E - Suburban</td>
+                        <td><span class="status-badge red">Inactive</span></td>
+                        <td>N/A</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="icon-btn">✏️</button>
+                                <button class="icon-btn">🗑️</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Allocate Button -->
+        <button class="allocate-btn">Allocate New Tasks</button>
+    </div>
+</body>
+</html>
