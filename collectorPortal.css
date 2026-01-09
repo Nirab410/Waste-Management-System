@@ -1,0 +1,197 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #f9fafb;
+    padding: 24px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Back Button */
+.back-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: white;
+    border: 2px solid #d1d5db;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 24px;
+    transition: background-color 0.2s;
+}
+
+.back-button:hover {
+    background-color: #f9fafb;
+}
+
+.arrow-icon {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+}
+
+/* Main Card */
+.card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 32px;
+}
+
+.main-title {
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 32px;
+    color: #1f2937;
+}
+
+/* Pickup Section */
+.pickup-section {
+    background-color: #ccfbf1;
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: #1f2937;
+}
+
+/* Request Card */
+.request-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.request-card:last-child {
+    margin-bottom: 0;
+}
+
+.request-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.request-info p {
+    color: #1f2937;
+    margin-bottom: 4px;
+    line-height: 1.5;
+}
+
+.label {
+    font-weight: 500;
+}
+
+/* Mark Button */
+.mark-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 9999px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.mark-button.green {
+    background-color: #10b981;
+}
+
+.mark-button.green:hover {
+    background-color: #059669;
+}
+
+.mark-button.purple {
+    background-color: #7c3aed;
+}
+
+.mark-button.purple:hover {
+    background-color: #6d28d9;
+}
+
+.check-icon {
+    width: 16px;
+    height: 16px;
+}
+
+/* Upload Section */
+.upload-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.upload-button {
+    background-color: #1f2937;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.upload-button:hover {
+    background-color: #374151;
+}
+
+.file-name {
+    font-size: 14px;
+    color: #4b5563;
+}
+
+.file-name.no-file {
+    color: #9ca3af;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 16px;
+    }
+
+    .card {
+        padding: 24px 16px;
+    }
+
+    .request-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .mark-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .upload-section {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .upload-button {
+        width: 100%;
+    }
+}
