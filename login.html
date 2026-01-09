@@ -208,5 +208,91 @@
         © 2026 EcoWaste Management System. All rights reserved.
     </div>
 </footer>
+
+<script>
+// Helper function to select
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+
+/* =================================================
+   1. INPUT FOCUS EFFECT
+================================================= */
+$$('.input-field').forEach(input => {
+    input.addEventListener('focus', () => {
+        input.style.backgroundColor = '#e0f0d9';
+        input.style.boxShadow = '0 0 5px #96c078';
+    });
+    input.addEventListener('blur', () => {
+        input.style.backgroundColor = '#dfe6d9';
+        input.style.boxShadow = 'none';
+    });
+});
+
+/* =================================================
+   2. SHOW/HIDE PASSWORD TOGGLE
+================================================= */
+const passwordInput = document.querySelector('input[type="password"]');
+
+const toggleBtn = document.createElement('span');
+toggleBtn.innerText = '👁️';
+toggleBtn.style = `
+position: absolute; right: 25px; top: 50%;
+transform: translateY(-50%);
+cursor: pointer; font-size: 16px;
+`;
+
+const loginCard = document.querySelector('.login-card');
+loginCard.style.position = 'relative';
+passwordInput.parentNode.appendChild(toggleBtn);
+
+toggleBtn.addEventListener('click', () => {
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        toggleBtn.innerText = '🙈';
+    } else {
+        passwordInput.type = 'password';
+        toggleBtn.innerText = '👁️';
+    }
+});
+
+/* =================================================
+   3. FORGOT PASSWORD ALERT
+================================================= */
+$('.forgot-password').addEventListener('click', e => {
+    e.preventDefault();
+    alert("🔑 Please contact support to reset your password!");
+});
+
+/* =================================================
+   4. FORM SUBMIT VALIDATION
+================================================= */
+const form = document.querySelector('form');
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    const username = form.querySelector('input[type="text"]').value.trim();
+    const password = passwordInput.value.trim();
+
+    if (!username || !password) {
+        alert("⚠️ Please fill in both fields!");
+        return;
+    }
+
+    // Demo success alert
+    alert(`✅ Logged in as ${username}`);
+    form.reset();
+});
+
+/* =================================================
+   5. BUTTON ANIMATION ON CLICK
+================================================= */
+$('.login-btn').addEventListener('mousedown', () => {
+    $('.login-btn').style.transform = 'scale(0.95)';
+});
+$('.login-btn').addEventListener('mouseup', () => {
+    $('.login-btn').style.transform = 'scale(1)';
+});
+</script>
+
+
 </body>
 </html>

@@ -417,6 +417,182 @@
         © 2026 EcoWaste Management System. All rights reserved.
     </div>
 </footer>
+<script>
+/* =================================================
+   GLOBAL HELPERS
+================================================= */
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+
+
+/* =================================================
+   1. SMOOTH SCROLL
+================================================= */
+$$('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+        const target = $(link.getAttribute('href'));
+        if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
+
+
+/* =================================================
+   2. ACTIVE NAVBAR LINK
+================================================= */
+const sections = $$('section');
+const navLinks = $$('nav a');
+
+window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+        if (scrollY >= sec.offsetTop - 120) {
+            current = sec.id;
+        }
+    });
+
+    navLinks.forEach(a => {
+        a.style.fontWeight = 'normal';
+        if (a.getAttribute('href') === `#${current}`) {
+            a.style.fontWeight = '700';
+        }
+    });
+});
+
+
+/* =================================================
+   3. SCROLL REVEAL
+================================================= */
+const revealEls = $$('.card, .portal1, .portal2, .portal3, .portal4');
+
+revealEls.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(50px)';
+    el.style.transition = '0.7s ease';
+});
+
+function reveal() {
+    revealEls.forEach(el => {
+        if (el.getBoundingClientRect().top < innerHeight - 100) {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+        }
+    });
+}
+window.addEventListener('scroll', reveal);
+reveal();
+
+
+/* =================================================
+   4. PORTAL HOVER EFFECT
+================================================= */
+$$('.portal').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        card.style.transform = 'scale(1.05)';
+    });
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'scale(1)';
+    });
+});
+
+
+/* =================================================
+   5. DARK / LIGHT MODE TOGGLE
+================================================= */
+const toggle = document.createElement('button');
+toggle.innerText = '🌙';
+toggle.style = `
+position:fixed; bottom:30px; right:30px;
+padding:12px; border-radius:50%;
+border:none; cursor:pointer; z-index:999;
+`;
+document.body.appendChild(toggle);
+
+let dark = false;
+toggle.onclick = () => {
+    dark = !dark;
+    document.body.style.background = dark ? '#121212' : '#f5f7f6';
+    document.body.style.color = dark ? '#fff' : '#333';
+    toggle.innerText = dark ? '☀️' : '🌙';
+};
+
+
+/* =================================================
+   6. COUNTER ANIMATION
+================================================= */
+function counter(el, target) {
+    let count = 0;
+    const inc = target / 100;
+    const interval = setInterval(() => {
+        count += inc;
+        el.innerText = Math.floor(count);
+        if (count >= target) {
+            el.innerText = target;
+            clearInterval(interval);
+        }
+    }, 20);
+}
+
+const stats = document.createElement('div');
+stats.innerHTML = `
+<div style="display:flex;gap:40px;justify-content:center;padding:40px">
+  <div><h2 id="c1">0</h2><p>Tons Collected</p></div>
+  <div><h2 id="c2">0</h2><p>Active Users</p></div>
+  <div><h2 id="c3">0</h2><p>Recycling Centers</p></div>
+</div>`;
+document.querySelector('.awareness').appendChild(stats);
+
+/* =================================================
+   DELAYED SCROLL-BASED COUNTER
+================================================= */
+let counterStarted = false;
+
+function startCounters() {
+    if (counterStarted) return;
+
+    const section = document.querySelector('.awareness');
+    const sectionTop = section.getBoundingClientRect().top;
+
+    if (sectionTop < window.innerHeight - 150) {
+        counterStarted = true;
+
+        setTimeout(() => {
+            counter(document.getElementById('c1'), 1200);
+            counter(document.getElementById('c2'), 450);
+            counter(document.getElementById('c3'), 32);
+        }, 0); 
+    }
+}
+
+window.addEventListener('scroll', startCounters);
+
+
+/* =================================================
+   7. ROLE-BASED PORTAL DETECTION + TOAST
+================================================= */
+$$('.portal .btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const role = btn.closest('.portal').querySelector('h4').innerText;
+        toast(`Opening ${role}`);
+    });
+});
+
+function toast(msg) {
+    const t = document.createElement('div');
+    t.innerText = msg;
+    t.style = `
+    position:fixed; bottom:90px; right:30px;
+    background:#2fb463; color:#000;
+    padding:12px 20px; border-radius:8px;
+    `;
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 2500);
+}
+</script>
+
+
 
 </body>
 </html>
