@@ -16,6 +16,20 @@
             color: #333;
             line-height: 1.6;
         }
+        /* HERO SECTION */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px;
+    gap: 40px;
+}
+
+.hero-image img {
+    max-width: 420px;
+    width: 100%;
+    height: auto;
+}
 
         /* Navbar */
         header {
@@ -60,7 +74,7 @@
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        background: #dff3ea;
+        background: #ecf9f7;
         color: #1f7f57;
         padding: 6px 14px;
         border-radius: 20px;
@@ -265,29 +279,36 @@
         <a href="#footer">Contact</a>
     </nav>
     <nav class="login">
-              <a href="#login" class="login-btn">Login</a>
+              <a href="login.html" class="login-btn">Login</a>
       </nav>
 </header>
 
 <!-- Hero Section -->
-<div class="navber">
-    <div class="badge">
-        <span>♻️</span>
-        Sustainable Future
+<div class="hero">
+    <div class="navber">
+        <div class="badge">
+            <span>♻️</span>
+            Sustainable Future
+        </div>
+
+        <h1>
+            Smart Waste<br>
+            Collection for<br>
+            <span class="green">a Cleaner Tomorrow</span>
+        </h1>
+
+        <p>
+            Manage waste efficiently with modern technology
+            and collaborate with your community for a
+            sustainable environment.
+        </p>
     </div>
 
-    <h1>
-        Smart Waste<br>
-        Collection for<br>
-        <span class="green">a Cleaner Tomorrow</span>
-    </h1>
-
-    <p>
-        Manage waste efficiently with modern technology
-        and collaborate with your community for a
-        sustainable environment.
-    </p>
+    <div class="hero-image">
+        <img src="image.png" alt="Reuse Reduce Recycle">
+    </div>
 </div>
+
 
 <!-- Awareness Section -->
 <section class="awareness">
