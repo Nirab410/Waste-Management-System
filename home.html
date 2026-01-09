@@ -519,25 +519,7 @@ $$('.portal').forEach(card => {
 });
 
 
-/* =================================================
-   5. DARK / LIGHT MODE TOGGLE
-================================================= */
-const toggle = document.createElement('button');
-toggle.innerText = '🌙';
-toggle.style = `
-position:fixed; bottom:30px; right:30px;
-padding:12px; border-radius:50%;
-border:none; cursor:pointer; z-index:999;
-`;
-document.body.appendChild(toggle);
 
-let dark = false;
-toggle.onclick = () => {
-    dark = !dark;
-    document.body.style.background = dark ? '#121212' : '#f5f7f6';
-    document.body.style.color = dark ? '#fff' : '#333';
-    toggle.innerText = dark ? '☀️' : '🌙';
-};
 
 
 /* =================================================
