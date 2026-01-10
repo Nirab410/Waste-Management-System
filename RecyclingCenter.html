@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Recycling Center | EcoCycle</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Tahoma, sans-serif;
+}
+
+body {
+    background: #f4f6f5;
+    color: #333;
+}
+
+/* ================= TOP NAV ================= */
+.top-nav {
+    background: #9af0b1;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-nav h2 {
+    color: #0b3d20;
+}
+
+.nav-center a {
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: 600;
+    color: #0b3d20;
+}
+
+.download-btn {
+    background: #3b82f6;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* ================= LAYOUT ================= */
+.layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    min-height: calc(100vh - 60px);
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar {
+    background: #2ea965;
+    padding: 20px;
+}
+
+.sidebar h3 {
+    color: #fff;
+    margin-bottom: 25px;
+}
+
+.sidebar a {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 12px;
+    border: 2px solid #7ee0a4;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+/* ================= MAIN CONTENT ================= */
+.main {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+/* ================= CARD ================= */
+.card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+.card h3 {
+    margin-bottom: 20px;
+    color: #1f7a43;
+}
+
+/* ================= FORM ================= */
+label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+select, input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #2ea965;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* ================= INVENTORY ================= */
+.inventory-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    color: #000;
+    font-weight: 600;
+}
+
+.plastic { background: #c39bd3; }
+.paper { background: #aed6f1; }
+.metal { background: #d5db8d; }
+.ewaste { background: #82c7a5; }
+.organic { background: #f5cba7; }
+
+</style>
+</head>
+
+<body>
+
+<!-- TOP NAV -->
+<div class="top-nav">
+    <h2>EcoCycle</h2>
+
+    <div class="nav-center">
+        <a href="#">Intake</a>
+        <a href="#">Inventory</a>
+        <a href="#">Reports</a>
+    </div>
+
+    <a href="#" class="download-btn">Download Waste Report</a>
+</div>
+
+<!-- PAGE LAYOUT -->
+<div class="layout">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <a href="#">Dashboard</a>
+        <a href="#">Collectors</a>
+        <a href="#">Routes</a>
+        <a href="#">Daily Intake</a>
+        <a href="#">Reports</a>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+
+        <!-- RECORD INTAKE -->
+        <div class="card">
+            <h3>Record Intake</h3>
+
+            <label>Waste Type</label>
+            <select>
+                <option>Food Waste</option>
+                <option>Plastic</option>
+                <option>Paper</option>
+                <option>Metal</option>
+                <option>E-waste</option>
+                <option>Glass</option>
+            </select>
+
+            <label>Weight (kg)</label>
+            <input type="number" placeholder="Enter weight">
+
+            <label>Source</label>
+            <select>
+                <option>Home</option>
+                <option>Industry</option>
+                <option>Commercial Area</option>
+            </select>
+
+            <button>Save Record</button>
+        </div>
+
+        <!-- WEEKLY INVENTORY -->
+        <div class="card">
+            <h3>Weekly Inventory By Type</h3>
+
+            <div class="inventory-item plastic">
+                <span>Plastic</span>
+                <span>1240 kg</span>
+            </div>
+
+            <div class="inventory-item paper">
+                <span>Paper</span>
+                <span>720 kg</span>
+            </div>
+
+            <div class="inventory-item metal">
+                <span>Metal</span>
+                <span>431 kg</span>
+            </div>
+
+            <div class="inventory-item ewaste">
+                <span>E-waste</span>
+                <span>150 kg</span>
+            </div>
+
+            <div class="inventory-item organic">
+                <span>Food Waste</span>
+                <span>980 kg</span>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
