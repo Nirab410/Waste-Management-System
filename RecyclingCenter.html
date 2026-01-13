@@ -5,74 +5,91 @@
 <title>Recycling Center | EcoCycle</title>
 
 <style>
-* {
+    * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Tahoma, sans-serif;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+:root {
+    --primary: #3fa34d;
+    --secondary: #7bcf9b;
+    --light: #f4f6f5;
+    --dark: #1f2933;
+    --card: #ffffff;
 }
 
 body {
-    background: #f4f6f5;
+    background: var(--light);
     color: #333;
 }
 
 /* ================= TOP NAV ================= */
 .top-nav {
-    background: #9af0b1;
-    padding: 15px 30px;
+    height: 60px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    padding: 0 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .top-nav h2 {
-    color: #0b3d20;
+    color: #fff;
+    font-weight: 600;
 }
 
 .nav-center a {
     margin: 0 15px;
     text-decoration: none;
     font-weight: 600;
-    color: #0b3d20;
+    color: #ffffff;
+    opacity: 0.9;
+}
+
+.nav-center a:hover {
+    opacity: 1;
+    text-decoration: underline;
 }
 
 .download-btn {
-    background: #3b82f6;
-    color: #fff;
-    padding: 10px 18px;
+    background: #ffffff;
+    color: var(--primary);
+    padding: 8px 16px;
     border-radius: 6px;
     text-decoration: none;
     font-size: 14px;
+    font-weight: 600;
 }
 
 /* ================= LAYOUT ================= */
 .layout {
     display: grid;
-    grid-template-columns: 220px 1fr;
+    grid-template-columns: 240px 1fr;
     min-height: calc(100vh - 60px);
 }
 
 /* ================= SIDEBAR ================= */
 .sidebar {
-    background: #2ea965;
+    background: var(--dark);
     padding: 20px;
-}
-
-.sidebar h3 {
-    color: #fff;
-    margin-bottom: 25px;
 }
 
 .sidebar a {
     display: block;
     text-decoration: none;
-    color: #fff;
-    padding: 10px;
+    color: #cfd8dc;
+    padding: 12px 14px;
     margin-bottom: 12px;
-    border: 2px solid #7ee0a4;
     border-radius: 6px;
     font-size: 15px;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
 }
 
 /* ================= MAIN CONTENT ================= */
@@ -85,14 +102,15 @@ body {
 
 /* ================= CARD ================= */
 .card {
-    background: #ffffff;
+    background: var(--card);
     padding: 25px;
     border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
 .card h3 {
     margin-bottom: 20px;
-    color: #1f7a43;
+    color: var(--primary);
 }
 
 /* ================= FORM ================= */
@@ -112,11 +130,16 @@ select, input {
 button {
     width: 100%;
     padding: 12px;
-    background: #2ea965;
+    background: var(--primary);
+    color: #fff;
     border: none;
     border-radius: 6px;
     font-weight: 600;
     cursor: pointer;
+}
+
+button:hover {
+    background: #2e7d32;
 }
 
 /* ================= INVENTORY ================= */
@@ -126,15 +149,15 @@ button {
     padding: 14px;
     margin-bottom: 15px;
     border-radius: 8px;
-    color: #000;
     font-weight: 600;
 }
 
-.plastic { background: #c39bd3; }
-.paper { background: #aed6f1; }
-.metal { background: #d5db8d; }
-.ewaste { background: #82c7a5; }
-.organic { background: #f5cba7; }
+.plastic { background: #e1bee7; }
+.paper { background: #bbdefb; }
+.metal { background: #dcedc8; }
+.ewaste { background: #b2dfdb; }
+.organic { background: #ffe0b2; }
+
 
 </style>
 </head>
@@ -143,7 +166,7 @@ button {
 
 <!-- TOP NAV -->
 <div class="top-nav">
-    <h2>EcoCycle</h2>
+    <h2>Recycling Center</h2>
 
     <div class="nav-center">
         <a href="#">Intake</a>

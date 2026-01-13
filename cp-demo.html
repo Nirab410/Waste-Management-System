@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Tasks | Waste Management System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* ---------- RESET ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+/* ---------- COLORS ---------- */
+:root {
+    --primary: #3fa34d;
+    --secondary: #7bcf9b;
+    --light: #f4f7f6;
+    --dark: #1f2933;
+    --card: #ffffff;
+}
+
+/* ---------- BODY ---------- */
+body {
+    background: var(--light);
+    color: #333;
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar {
+    height: 60px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+}
+
+.navbar h2 {
+    font-weight: 600;
+}
+
+.navbar span {
+    margin-left: auto;
+    font-size: 14px;
+}
+
+/* ---------- LAYOUT ---------- */
+.container {
+    display: flex;
+    margin-top: 60px;
+}
+
+/* ---------- SIDEBAR ---------- */
+.sidebar {
+    width: 230px;
+    background: var(--dark);
+    min-height: calc(100vh - 60px);
+    padding-top: 20px;
+}
+
+.sidebar a {
+    display: block;
+    padding: 14px 22px;
+    color: #cfd8dc;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+}
+
+.sidebar a.active {
+    background: var(--secondary);
+    color: #fff;
+}
+
+/* ---------- MAIN ---------- */
+.main {
+    flex: 1;
+    padding: 25px;
+}
+
+.main h1 {
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+/* ---------- TASK TABLE ---------- */
+.task-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.task-table th, 
+.task-table td {
+    padding: 14px;
+    text-align: left;
+}
+
+.task-table th {
+    background: var(--primary);
+    color: #fff;
+}
+
+.task-table tr:nth-child(even) {
+    background: #f1f5f3;
+}
+
+/* ---------- BUTTONS ---------- */
+.btn {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.chat-btn {
+    background: #bbdefb;
+    color: #0d47a1;
+}
+
+.confirm-btn {
+    background: var(--primary);
+    color: #fff;
+}
+
+.confirm-btn:hover {
+    background: #2e7d32;
+}
+
+/* ---------- CHAT MODAL ---------- */
+.chat-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+}
+
+.chat-box {
+    width: 380px;
+    background: var(--card);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chat-header {
+    background: var(--primary);
+    color: #fff;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.chat-body {
+    padding: 15px;
+    flex: 1;
+    overflow-y: auto;
+    background: #f1f5f3;
+}
+
+.msg {
+    max-width: 75%;
+    margin-bottom: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.user {
+    background: #ffffff;
+}
+
+.collector {
+    background: #c8e6c9;
+    margin-left: auto;
+}
+
+/* ---------- CHAT INPUT ---------- */
+.chat-input {
+    display: flex;
+    border-top: 1px solid #ddd;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    outline: none;
+}
+
+.chat-input button {
+    padding: 0 18px;
+    border: none;
+    background: var(--primary);
+    color: #fff;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <h2>Waste Management System</h2>
+    <span>My Tasks</span>
+</div>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <a href="cd_demo.html">Dashboard</a>
+        <a class="active" href="#">My Tasks</a>
+        <a href="#">Route & Schedule</a>
+        <a href="#">Guidelines</a>
+        <a href="#">Profile</a>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+        <h1>Assigned Residents</h1>
+
+        <table class="task-table">
+            <tr>
+                <th>Resident</th>
+                <th>Address</th>
+                <th>Chat</th>
+                <th>Upload Proof</th>
+                <th>Status</th>
+            </tr>
+
+            <tr>
+                <td><strong>Rahim Uddin</strong></td>
+                <td>House 12, Road 5, Mirpur</td>
+                <td>
+                    <button class="btn chat-btn" onclick="openChat()">Open Chat</button>
+                </td>
+                <td><input type="file"></td>
+                <td><button class="btn confirm-btn">Confirm Picked</button></td>
+            </tr>
+
+            <tr>
+                <td><strong>Karima Begum</strong></td>
+                <td>Flat 3B, Dhanmondi 27</td>
+                <td>
+                    <button class="btn chat-btn" onclick="openChat()">Open Chat</button>
+                </td>
+                <td><input type="file"></td>
+                <td><button class="btn confirm-btn">Confirm Picked</button></td>
+            </tr>
+
+            <tr>
+                <td><strong>Saifur Rahman</strong></td>
+                <td>Flat 11, Uttara 9</td>
+                <td>
+                    <button class="btn chat-btn" onclick="openChat()">Open Chat</button>
+                </td>
+                <td><input type="file"></td>
+                <td><button class="btn confirm-btn">Confirm Picked</button></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- CHAT MODAL -->
+<div class="chat-modal" id="chatModal">
+    <div class="chat-box">
+        <div class="chat-header">
+            <span>Resident Chat</span>
+            <button onclick="closeChat()">×</button>
+        </div>
+
+        <div class="chat-body">
+            <div class="msg user">Please come before 10 AM.</div>
+            <div class="msg collector">Sure, on my way.</div>
+        </div>
+
+        <div class="chat-input">
+            <input type="text" placeholder="Type a message...">
+            <button>Send</button>
+        </div>
+    </div>
+</div>
+
+<!-- SIMPLE UI SCRIPT -->
+<script>
+function openChat() {
+    document.getElementById("chatModal").style.display = "flex";
+}
+function closeChat() {
+    document.getElementById("chatModal").style.display = "none";
+}
+</script>
+
+</body>
+</html>

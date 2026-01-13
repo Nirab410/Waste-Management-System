@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Recycling Centers | Waste Management System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* ---------- RESET ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+/* ---------- COLORS (SAME AS OTHER PAGES) ---------- */
+:root {
+    --primary: #3fa34d;
+    --secondary: #7bcf9b;
+    --light: #f4f7f6;
+    --dark: #1f2933;
+    --card: #ffffff;
+}
+
+/* ---------- BODY ---------- */
+body {
+    background: var(--light);
+    color: #333;
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar {
+    height: 60px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+}
+
+.navbar h2 {
+    font-weight: 600;
+}
+
+.navbar span {
+    margin-left: auto;
+    font-size: 14px;
+}
+
+/* ---------- LAYOUT ---------- */
+.container {
+    display: flex;
+    margin-top: 60px;
+}
+
+/* ---------- SIDEBAR ---------- */
+.sidebar {
+    width: 230px;
+    background: var(--dark);
+    min-height: calc(100vh - 60px);
+    padding-top: 20px;
+}
+
+.sidebar a {
+    display: block;
+    padding: 14px 22px;
+    color: #cfd8dc;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+}
+
+.sidebar a.active {
+    background: var(--secondary);
+    color: #fff;
+}
+
+/* ---------- MAIN ---------- */
+.main {
+    flex: 1;
+    padding: 30px;
+}
+
+.main h1 {
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.main p {
+    color: #555;
+    margin-bottom: 25px;
+}
+
+/* ---------- CARDS ---------- */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: var(--card);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.card h3 {
+    margin-bottom: 8px;
+}
+
+.card span {
+    font-size: 14px;
+    color: #666;
+}
+
+/* ---------- TABLE ---------- */
+.table-section {
+    margin-top: 35px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+th, td {
+    padding: 14px;
+    text-align: left;
+}
+
+th {
+    background: var(--primary);
+    color: #fff;
+}
+
+tr:nth-child(even) {
+    background: #f1f5f3;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <h2>Waste Management System</h2>
+    <span>Admin Panel</span>
+</div>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <a href="AdminDashboard.html">Dashboard</a>
+        <a class="active" href="#">Recycling Centers</a>
+        <a href="#">Add Recycling Center</a>
+        <a href="#">Collector Management</a>
+        <a href="#">Reports</a>
+        <a href="#">Logout</a>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+        <h1>Recycling Centers</h1>
+        <p>Overview of registered recycling centers and their capacity.</p>
+
+        <!-- SUMMARY CARDS -->
+        <div class="cards">
+            <div class="card">
+                <h3>Total Centers</h3>
+                <span>6 Active Locations</span>
+            </div>
+            <div class="card">
+                <h3>Plastic Processing</h3>
+                <span>High Capacity</span>
+            </div>
+            <div class="card">
+                <h3>Organic Waste</h3>
+                <span>Moderate Capacity</span>
+            </div>
+        </div>
+
+        <!-- TABLE -->
+        <div class="table-section">
+            <table>
+                <tr>
+                    <th>Center Name</th>
+                    <th>Location</th>
+                    <th>Waste Type</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>GreenCycle Plant</td>
+                    <td>Mirpur</td>
+                    <td>Plastic</td>
+                    <td>Operational</td>
+                </tr>
+                <tr>
+                    <td>EcoRenew Hub</td>
+                    <td>Dhanmondi</td>
+                    <td>Organic</td>
+                    <td>Operational</td>
+                </tr>
+                <tr>
+                    <td>Reuse Point</td>
+                    <td>Uttara</td>
+                    <td>Mixed</td>
+                    <td>Maintenance</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
