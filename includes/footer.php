@@ -37,8 +37,6 @@
     </div>
 </footer>
 
-<!-- JavaScript -->
-<script src="layout.js"></script>
 
 </body>
 </html>

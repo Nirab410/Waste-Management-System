@@ -44,6 +44,18 @@ nav a.active {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
+#logout-btn{
+    background-color: #ff0404;
+    text-decoration: none;
+    color: #000;
+    padding: 12px 40px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
 .login-btn:hover {
     background-color: rgb(210, 245, 205);

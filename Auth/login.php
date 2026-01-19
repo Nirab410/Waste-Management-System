@@ -7,7 +7,7 @@
         $password = trim($_POST['password']);
 
         $stmt = $pdo->query("
-        SELECT id, password
+        SELECT id, full_name, password
         FROM users
         WHERE email = '$email' ");
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -15,6 +15,7 @@
         if($user && password_verify($password, $user['password'])){
              session_start();
              $_SESSION['user_id'] = $user['id'];
+             $_SESSION['user_name'] = $user['full_name'];
              echo "<script>alert('Login successful! Redirecting to home page...');</script>";
             //  header("refresh:2;url=home.php");
         }else{
