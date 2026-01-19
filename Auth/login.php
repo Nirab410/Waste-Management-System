@@ -1,19 +1,43 @@
 <?php 
-$page_title = "EcoWaste | Login";
-include '../includes/navbar.php'; 
+    $page_title = "EcoWaste | Login";
+    include '../includes/navbar.php'; 
+    include '../dbConnection.php';
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $email = trim($_POST['email']);
+        $password = trim($_POST['password']);
+
+        $stmt = $pdo->query("
+        SELECT id, password
+        FROM users
+        WHERE email = '$email' ");
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if($user && password_verify($password, $user['password'])){
+             session_start();
+             $_SESSION['user_id'] = $user['id'];
+             echo "<script>alert('Login successful! Redirecting to home page...');</script>";
+            //  header("refresh:2;url=home.php");
+        }else{
+            echo "<script>alert('Invalid email or password!');</script>";
+        }
+
+    }
+
 ?>
 
 <!-- Add login.css after the navbar include -->
 <link rel="stylesheet" href="styles/login.css">
+
+
 
 <div class="body">
     <div class="login-card">
         <h1>Log In</h1>
         <p class="subtitle">Please fill your details for log in</p>
 
-        <form>
-            <input type="text" class="input-field" placeholder="Username or email">
-            <input type="password" class="input-field" placeholder="Password">
+        <form method="POST" action="login.php">
+            <input name="email" type="text" class="input-field" placeholder="Enter you email here" required>
+            <input name="password" type="password" class="input-field" placeholder="Password" required>
             
             <a href="#" class="forgot-password">Forgotten Password?</a>
             
@@ -48,7 +72,7 @@ const passwordInput = document.querySelector('input[type="password"]');
 const toggleBtn = document.createElement('span');
 toggleBtn.innerText = '👁️';
 toggleBtn.style = `
-position: absolute; right: 25px; top: 50%;
+position: absolute; right: 15px; top: 52%;
 transform: translateY(-50%);
 cursor: pointer; font-size: 16px;
 `;
@@ -69,26 +93,23 @@ toggleBtn.addEventListener('click', () => {
 
 /* FORGOT PASSWORD ALERT */
 $('.forgot-password').addEventListener('click', e => {
-    e.preventDefault();
     alert("🔑 Please contact support to reset your password!");
 });
 
 /* FORM SUBMIT VALIDATION */
-const form = document.querySelector('form');
-form.addEventListener('submit', e => {
-    e.preventDefault();
-    const username = form.querySelector('input[type="text"]').value.trim();
-    const password = passwordInput.value.trim();
+// const form = document.querySelector('form');
+// form.addEventListener('submit', e => {
+//     e.preventDefault();
+//     const username = form.querySelector('input[type="text"]').value.trim();
+//     const password = passwordInput.value.trim();
 
-    if (!username || !password) {
-        alert("⚠️ Please fill in both fields!");
-        return;
-    }
+//     if (!username || !password) {
+//         alert("⚠️ Please fill in both fields!");
+//         return;
+//     }
 
-    // Demo success alert
-    alert(`✅ Logged in as ${username}`);
-    form.reset();
-});
+//     // Demo success alert
+// });
 
 /* BUTTON ANIMATION ON CLICK */
 $('.login-btn').addEventListener('mousedown', () => {
