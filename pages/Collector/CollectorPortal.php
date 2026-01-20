@@ -12,7 +12,7 @@
     $stmt = $pdo->query("
         SELECT role
         FROM users
-        WHERE user_id = '{$_SESSION['user_id']}'
+        WHERE id = '{$_SESSION['user_id']}'
     ");
     $role = $stmt->fetch(PDO::FETCH_ASSOC);
     if($role['role'] != 'COLLECTOR'){
@@ -20,17 +20,21 @@
         exit();
     }
     
-    $assignmentsStmt = $pdo->query("
-        SELECT full_name
-         ( SELECT resident_id
-        
-            (select request_id from collector_assignments where collector_id = '{$_SESSION['user_id']}')
-            from collector_assignments
-         )
-        FROM users
-       
+    $assignmentStmt = $pdo->query("
+        SELECT 
+            (SELECT full_name FROM users WHERE id = wr.resident_id) AS full_name,
+            wr.collection_location AS location
+        FROM waste_requests wr
+        WHERE wr.id IN (
+            SELECT request_id 
+            FROM collector_assignments 
+            WHERE collector_id = {$_SESSION['user_id']}
+        )
     ");
-    
+
+    $row = $assignmentStmt->fetch(PDO::FETCH_ASSOC);
+    $residentName = $row['full_name'];
+    $location = $row['location'];
 
 ?>
 
@@ -48,8 +52,8 @@
             <div class="request-card">
                 <div class="request-header">
                     <div>
-                        <p><span class="label">Resident:</span> Rahim</p>
-                        <p><span class="label">Location:</span> Sector 5, Road 13, Uttara</p>
+                        <p><span class="label">Resident:</span> <?= htmlspecialchars($residentName) ?></p>
+                        <p><span class="label">Location:</span> <?= htmlspecialchars($location) ?></p>
                     </div>
                     <button class="mark-button">Mark As Picked</button>
                 </div>
