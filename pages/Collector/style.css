@@ -105,3 +105,23 @@ body {
     border-radius: 4px;
     cursor: pointer;
 }
+.mark-button {
+    height:3rem;
+    background-color: #f59e0b; /* Orange/Yellow for ASSIGNED */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.mark-button.collected {
+    background-color: #10b981; /* Green for COLLECTED */
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.mark-button:hover:not(.collected) {
+    background-color: #d97706;
+}
