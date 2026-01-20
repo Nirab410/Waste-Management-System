@@ -1,0 +1,123 @@
+/* =========================
+   Global Reset & Base
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f7f9;
+    color: #333;
+}
+
+/* =========================
+   Container
+========================= */
+.container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* =========================
+   Page Title
+========================= */
+.page-title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #2c3e50;
+}
+
+/* =========================
+   Welcome Card
+========================= */
+.welcome-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 40px;
+}
+
+.welcome-text {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #34495e;
+}
+
+/* =========================
+   Task Count
+========================= */
+.task-count {
+    font-size: 52px;
+    font-weight: bold;
+    color: #27ae60;
+    margin-bottom: 8px;
+}
+
+.task-label {
+    font-size: 15px;
+    color: #7f8c8d;
+}
+
+/* =========================
+   Daily Tasks Button
+========================= */
+.daily-tasks-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    background-color: #27ae60;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 16px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+
+    margin: 0 auto;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.daily-tasks-button:hover {
+    background-color: #219150;
+    transform: translateY(-2px);
+}
+
+.daily-tasks-button:active {
+    transform: translateY(0);
+}
+
+/* =========================
+   Arrow Icon
+========================= */
+.arrow-icon {
+    width: 18px;
+    height: 18px;
+}
+
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 600px) {
+    .welcome-card {
+        padding: 20px;
+    }
+
+    .task-count {
+        font-size: 40px;
+    }
+
+    .daily-tasks-button {
+        width: 100%;
+        padding: 14px;
+    }
+}

@@ -189,7 +189,7 @@
 <link rel="stylesheet" href="style.css">
 
 <div class="container">
-    <a href="CollectorDashboard.html" class="back-link">← Back To Dashboard</a>
+    <a href="CollectorDashboard.php" class="back-link">← Back To Dashboard</a>
 
     <div class="card">
         <h1 class="main-title">Task Details</h1>
