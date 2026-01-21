@@ -16,7 +16,8 @@
     ");
     $role = $stmt->fetch(PDO::FETCH_ASSOC);
     if($role['role'] != 'COLLECTOR'){
-        echo "<script>alert('Access denied. Collector role required.');</script>";
+        echo "<script>alert('Access denied. Collector role required. {$role['role']}');</script>";
+        header("Location: /Auth/login.php");
         exit();
     }
     

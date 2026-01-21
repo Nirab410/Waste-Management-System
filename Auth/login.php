@@ -7,15 +7,43 @@
         $password = trim($_POST['password']);
 
         $stmt = $pdo->query("
-        SELECT id, full_name, password
+        SELECT id, full_name, password, role
         FROM users
         WHERE email = '$email' ");
+
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         
         if($user && password_verify($password, $user['password'])){
              session_start();
-             $_SESSION['user_id'] = $user['id'];
-             $_SESSION['user_name'] = $user['full_name'];
+             if($user['role'] == 'ADMIN'){
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['user_role'] = $user['role'];
+                // header("Location: pages/Admin/dashboard.php");
+                exit();
+            } elseif($user['role'] == 'COLLECTOR'){
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['user_role'] = $user['role'];
+                // header("Location: pages/Collector/dashboard.php");
+                exit();
+            } elseif($user['role'] == 'RECYCLE_CENTER'){
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['user_role'] = $user['role'];
+                // header("Location: pages/Recycle-Center/dashboard.php");
+                exit();
+            }elseif($user['role'] == 'RESIDENT'){
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['user_role'] = $user['role'];
+                // header("Location: pages/Resident/dashboard.php");
+                exit();
+            }
+            else {
+                echo "<script>alert('Invalid user role!');</script>";
+                exit();
+            }
+            //  $_SESSION['user_id'] = $user['id'];
+            //  $_SESSION['user_name'] = $user['full_name'];
+            //  $_SESSION['user_role'] = $user['role'];
+
              echo "<script>alert('Login successful! Redirecting to home page...');</script>";
             //  header("refresh:2;url=home.php");
         }else{
