@@ -18,12 +18,13 @@
              if($user['role'] == 'ADMIN'){
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['user_role'] = $user['role'];
-                // header("Location: pages/Admin/dashboard.php");
+                $_SESSION['user_name'] = $user['full_name'];
+                 header("Location: /pages/Admin/AdminDashboard.php");
                 exit();
             } elseif($user['role'] == 'COLLECTOR'){
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['user_role'] = $user['role'];
-                // header("Location: pages/Collector/dashboard.php");
+                header("Location: /pages/Collector/CollectorDashboard.php");
                 exit();
             } elseif($user['role'] == 'RECYCLE_CENTER'){
                 $_SESSION['user_id'] = $user['id'];
@@ -33,7 +34,7 @@
             }elseif($user['role'] == 'RESIDENT'){
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['user_role'] = $user['role'];
-                // header("Location: pages/Resident/dashboard.php");
+                 header("Location: pages/Resident/ResidentPortal.php");
                 exit();
             }
             else {

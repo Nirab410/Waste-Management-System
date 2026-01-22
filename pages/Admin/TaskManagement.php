@@ -79,23 +79,37 @@
         LEFT JOIN recycling_centers rc ON wr.center_id = rc.id
         LEFT JOIN zones z ON rc.zone_id = z.id
         ORDER BY 
+            CASE WHEN wr.status = 'PENDING' THEN 0 ELSE 1 END,
             CASE WHEN wr.request_type = 'EMERGENCY' THEN 0 ELSE 1 END,
             wr.created_at DESC
     ");
     $requests = $requestsStmt->fetchAll(PDO::FETCH_ASSOC);
     
     // Get active collectors with their task count
+    
+    // $collectorsStmt = $pdo->query("
+    //     SELECT 
+    //         u.id,
+    //         u.full_name,
+    //         u.phone,
+    //         COUNT(ca.id) as assigned_tasks
+    //     FROM users u
+    //     LEFT JOIN collector_assignments ca ON u.id = ca.collector_id
+    //     WHERE u.role = 'COLLECTOR'
+    //     GROUP BY u.id, u.full_name, u.phone
+    //     ORDER BY assigned_tasks ASC, u.full_name ASC
+    // ");
     $collectorsStmt = $pdo->query("
-        SELECT 
-            u.id,
-            u.full_name,
-            u.phone,
-            COUNT(ca.id) as assigned_tasks
-        FROM users u
-        LEFT JOIN collector_assignments ca ON u.id = ca.collector_id
-        WHERE u.role = 'COLLECTOR'
-        GROUP BY u.id, u.full_name, u.phone
-        ORDER BY assigned_tasks ASC, u.full_name ASC
+    SELECT 
+        u.id,
+        u.full_name,
+        u.phone,
+        COUNT(ca.id) as assigned_tasks
+    FROM users u
+    LEFT JOIN collector_assignments ca ON u.id = ca.collector_id
+    WHERE u.role = 'COLLECTOR' AND u.is_active = 1 -- Added status check
+    GROUP BY u.id, u.full_name, u.phone
+    ORDER BY assigned_tasks ASC, u.full_name ASC
     ");
     $collectors = $collectorsStmt->fetchAll(PDO::FETCH_ASSOC);
 ?>

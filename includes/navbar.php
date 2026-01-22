@@ -19,7 +19,7 @@
 <header>
     <h1 style="color: #2fb463; font-size: 30px;">EcoWaste</h1>
     <nav>
-        <a href="index.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : ''; ?>">Home</a>
+        <a href="/pages/HomePage/home.php">Home</a>
         <a href="#footer">About Us</a>
         <a href="#footer">Contact</a>
     </nav>

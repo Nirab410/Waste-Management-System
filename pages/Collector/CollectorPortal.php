@@ -143,7 +143,7 @@
                     if(move_uploaded_file($file['tmp_name'], $upload_path)){
                         // Store in database
                         $insert_stmt = $pdo->prepare("
-                            INSERT INTO collection_proofs (request_id, image_path, uploaded_at) 
+                            INSERT INTO collection_proofs (request_id, image_path, collected_at) 
                             VALUES (?, ?, NOW())
                         ");
                         

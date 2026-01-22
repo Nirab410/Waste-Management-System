@@ -10,6 +10,7 @@
        header("Location: /Auth/login.php");
        exit();
     }
+    
 
     // Check if user is RESIDENT
     $stmt = $pdo->query("
@@ -28,13 +29,14 @@
     $residentStmt = $pdo->prepare("SELECT full_name, phone FROM users WHERE id = ?");
     $residentStmt->execute([$_SESSION['user_id']]);
     $resident = $residentStmt->fetch(PDO::FETCH_ASSOC);
+    echo "<script>console.log('User Name: " . $resident['full_name'] . "');</script>";
     
     // Get all zones
     $zonesStmt = $pdo->query("SELECT zone_name FROM zones ORDER BY zone_name");
     $zones = $zonesStmt->fetchAll(PDO::FETCH_ASSOC);
     
     // Handle Pickup Request Submission
-    if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_request'])){
+   if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_request'])){
         $request_type = $_POST['request_type'];
         $frequency = $_POST['frequency'];
         $pickup_date = $_POST['pickup_date'];
@@ -43,46 +45,46 @@
         $estimated_weight = $_POST['estimated_weight'];
         
         try {
-            // Get zone_id from zone_name
             $zoneStmt = $pdo->prepare("SELECT id FROM zones WHERE zone_name = ?");
             $zoneStmt->execute([$zone_name]);
             $zone = $zoneStmt->fetch(PDO::FETCH_ASSOC);
             
             if($zone){
-                $zone_id = $zone['id'];
-                
-                // Get recycling center id from zone_id
                 $centerStmt = $pdo->prepare("SELECT id FROM recycling_centers WHERE zone_id = ? LIMIT 1");
-                $centerStmt->execute([$zone_id]);
+                $centerStmt->execute([$zone['id']]);
                 $center = $centerStmt->fetch(PDO::FETCH_ASSOC);
                 
                 if($center){
-                    $center_id = $center['id'];
-                    
                     $insertRequest = $pdo->prepare("
                         INSERT INTO waste_requests (resident_id, request_type, frequency, pickup_date, collection_location, center_id, estimated_weight, status, created_at) 
                         VALUES (?, ?, ?, ?, ?, ?, ?, 'PENDING', NOW())
                     ");
-                    
-                    if($insertRequest->execute([$_SESSION['user_id'], $request_type, $frequency, $pickup_date, $collection_location, $center_id, $estimated_weight])){
-                        echo "<script>alert('Pickup request submitted successfully!');</script>";
-                    } else {
-                        echo "<script>alert('Failed to submit request.');</script>";
+                    if($insertRequest->execute([$_SESSION['user_id'], $request_type, $frequency, $pickup_date, $collection_location, $center['id'], $estimated_weight])){
+                        // Store message in the session memory instead of the URL
+                        $_SESSION['show_alert'] = "Pickup request submitted successfully!";
+                        
+                        // Redirect to the clean URL (without ?success=1)
+                        header("Location: " . $_SERVER['PHP_SELF']);
+                        exit();
                     }
                 } else {
                     echo "<script>alert('No recycling center found for selected zone.');</script>";
                 }
-            } else {
-                echo "<script>alert('Invalid zone selected.');</script>";
             }
         } catch(Exception $e) {
             echo "<script>alert('Error: " . addslashes($e->getMessage()) . "');</script>";
         }
     }
+
+    // Optional: Show alert after redirect
+    if(isset($_SESSION['show_alert'])) {
+        echo "<script>alert('" . $_SESSION['show_alert'] . "');</script>";
+        unset($_SESSION['show_alert']); // This "kills" the message so it won't show on refresh
+    }
     
-    // Get latest waste request status
+    // Get latest waste request status and ID
     $statusStmt = $pdo->prepare("
-        SELECT status, pickup_date, collection_location 
+        SELECT id, status, pickup_date, collection_location 
         FROM waste_requests 
         WHERE resident_id = ? 
         ORDER BY created_at DESC 
@@ -106,6 +108,32 @@
     ");
     $collectorStmt->execute([$_SESSION['user_id']]);
     $collector = $collectorStmt->fetch(PDO::FETCH_ASSOC);
+    
+    // Get chat messages for latest request
+    $messages = [];
+    if($latestRequest){
+        $messagesStmt = $pdo->prepare("
+            SELECT cm.message, cm.sent_at, u.full_name, u.role
+            FROM chat_messages cm
+            JOIN users u ON cm.sender_id = u.id
+            WHERE cm.request_id = ?
+            ORDER BY cm.sent_at ASC
+        ");
+        $messagesStmt->execute([$latestRequest['id']]);
+        $messages = $messagesStmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    // Get collection proof photos for latest request
+    $photos = [];
+    if($latestRequest){
+        $photosStmt = $pdo->prepare("
+            SELECT image_path
+            FROM collection_proofs
+            WHERE request_id = ?
+        ");
+        $photosStmt->execute([$latestRequest['id']]);
+        $photos = $photosStmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -247,6 +275,100 @@ button:hover {
     color: #2fb463;
     font-weight: bold;
 }
+
+/* ================= MESSAGES ================= */
+.messages-container {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.message {
+    margin-bottom: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    background: white;
+}
+
+.message.collector {
+    background: #e8f5e9;
+}
+
+.message.resident {
+    background: #e3f2fd;
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 12px;
+    color: #666;
+}
+
+.message-sender {
+    font-weight: bold;
+    color: #333;
+}
+
+.message-text {
+    color: #333;
+    font-size: 14px;
+}
+
+.no-messages {
+    text-align: center;
+    color: #999;
+    padding: 20px;
+}
+
+/* ================= PHOTOS ================= */
+.photos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.photo-item {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.photo-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.photo-item img:hover {
+    transform: scale(1.05);
+}
+
+.photo-date {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 5px;
+    font-size: 11px;
+    text-align: center;
+}
+
+.no-photos {
+    text-align: center;
+    color: #999;
+    padding: 20px;
+}
 </style>
 </head>
 
@@ -300,7 +422,7 @@ button:hover {
     </div>
 
     <!-- Live Status -->
-    <div class="card">
+   <div class="card">
         <h3>Live Status</h3>
         <?php if($latestRequest): ?>
             <p><strong>Pickup Date:</strong> <?= date('M d, Y', strtotime($latestRequest['pickup_date'])) ?></p>
@@ -315,9 +437,6 @@ button:hover {
             </div>
             <div class="status-step <?= $latestRequest['status'] == 'COLLECTED' ? 'active' : '' ?>">
                 Collected
-            </div>
-            <div class="status-step <?= $latestRequest['status'] == 'COMPLETED' ? 'active' : '' ?>">
-                Completed
             </div>
         <?php else: ?>
             <p>No active requests</p>
@@ -334,6 +453,43 @@ button:hover {
         <?php else: ?>
             <p><strong>Status:</strong> Not Allocated Yet</p>
             <p>Waiting for collector assignment...</p>
+        <?php endif; ?>
+    </div>
+
+    <!-- Messages from Collector -->
+    <div class="card">
+        <h3>Messages</h3>
+        <div class="messages-container">
+            <?php if(!empty($messages)): ?>
+                <?php foreach($messages as $msg): ?>
+                    <div class="message <?= $msg['role'] == 'COLLECTOR' ? 'collector' : 'resident' ?>">
+                        <div class="message-header">
+                            <span class="message-sender"><?= htmlspecialchars($msg['full_name']) ?></span>
+                            <span><?= date('M d, h:i A', strtotime($msg['sent_at'])) ?></span>
+                        </div>
+                        <div class="message-text"><?= htmlspecialchars($msg['message']) ?></div>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="no-messages">No messages yet</div>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <!-- Collection Proof Photos -->
+    <div class="card">
+        <h3>Collection Proof Photos</h3>
+        <?php if(!empty($photos)): ?>
+            <div class="photos-container">
+                <?php foreach($photos as $photo): ?>
+                    <div class="photo-item">
+                        <img src="<?= htmlspecialchars($photo['image_path']) ?>" alt="Collection Proof" onclick="window.open(this.src, '_blank')">
+                        <div class="photo-date"><?= date('M d, Y h:i A',) ?></div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php else: ?>
+            <div class="no-photos">No photos uploaded yet</div>
         <?php endif; ?>
     </div>
 

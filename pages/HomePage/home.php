@@ -1,3 +1,8 @@
+<?php
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -271,18 +276,10 @@
 </head>
 <body>
 
-<!-- Header -->
-<header>
-    <h1 style="color: #2fb463; font-size: 30px;">EcoWaste</h1>
-    <nav>
-        <a href="home.html" style="color: #2fb463;">Home</a>
-        <a href="#footer">About Us</a>
-        <a href="#footer">Contact</a>
-    </nav>
-    <nav class="login">
-              <a href="login.html" class="login-btn">Login</a>
-      </nav>
-</header>
+<?php
+    $page_title = "Home | EcoWaste";
+    include "../../includes/navbar.php";
+?>
 
 <!-- Hero Section -->
 <div class="hero">
@@ -306,7 +303,7 @@
     </div>
 
     <div class="hero-image">
-        <img src="image.png" alt="Reuse Reduce Recycle">
+        <img src="/pages/HomePage/Images/image.png" alt="Reuse Reduce Recycle">
     </div>
 </div>
 
@@ -321,7 +318,7 @@
 
     <div class="cards">
         <div class="card">
-            <img src="reduce.png" alt="img">
+            <img src="/pages/HomePage/Images/reduce.png" alt="img">
             <h3>Reduce</h3>
             <p>
                 Minimize waste generation by choosing products with less packaging
@@ -330,7 +327,7 @@
         </div>
 
         <div class="card">
-            <img src="reuse.png" alt="img">
+            <img src="/pages/HomePage/Images/reuse.png" alt="img">
             <h3>Reuse</h3>
             <p>
                 Give items a second life before discarding them. Donate unused goods
@@ -339,7 +336,7 @@
         </div>
 
         <div class="card">
-            <img src="recycle.png" alt="img">
+            <img src="/pages/HomePage/Images/recycle.png" alt="img">
             <h3>Recycle</h3>
             <p>
                 Transform waste into valuable resources by properly sorting materials
@@ -360,7 +357,7 @@
             <img src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png" class="icon">
             <h4>Admin Portal</h4>
             <p>Manage system settings, users, and monitor overall operations.</p>
-            <a href="ad_demo.html" class="btn" style="text-decoration: none;">
+            <a href="/pages/Admin/AdminDashboard.php" class="btn" style="text-decoration: none;">
     Access Portal <span>→</span>
   </a>
         </div>
@@ -371,7 +368,7 @@
             <img src="https://cdn-icons-png.flaticon.com/512/3596/3596091.png" class="icon">
             <h4>Collector Portal</h4>
             <p>View assigned routes, update collection status, and manage tasks.</p>
-           <a href="cd_demo.html" class="btn" style="text-decoration: none;">
+           <a href="/pages/Collector/CollectorPortal.php" class="btn" style="text-decoration: none;">
     Access Portal <span>→</span>
   </a>
         </div>
@@ -382,7 +379,7 @@
             <img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" class="icon">
             <h4>Resident Portal</h4>
             <p>Schedule pickups, report issues, and track collection history.</p>
-            <a href="ResidentPortal.html" class="btn" style="text-decoration: none;">
+            <a href="/pages/Resident/ResidentPortal.php" class="btn" style="text-decoration: none;">
     Access Portal <span>→</span>
   </a>
         </div>
@@ -393,7 +390,7 @@
             <img src="https://cdn-icons-png.flaticon.com/512/3050/3050525.png" class="icon">
             <h4>Recycling Center</h4>
             <p>Manage inventory, track processing, and coordinate pickups.</p>
-            <a href="RecyclingCenter.html" class="btn" style="text-decoration: none;">
+            <a href="/pages/Recycle-Center/" class="btn" style="text-decoration: none;">
     Access Portal <span>→</span>
   </a>
         </div>
