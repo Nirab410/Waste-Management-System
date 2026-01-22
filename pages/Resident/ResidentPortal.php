@@ -40,6 +40,7 @@
         $pickup_date = $_POST['pickup_date'];
         $zone_name = $_POST['zone_name'];
         $collection_location = $_POST['collection_location'];
+        $estimated_weight = $_POST['estimated_weight'];
         
         try {
             // Get zone_id from zone_name
@@ -59,11 +60,11 @@
                     $center_id = $center['id'];
                     
                     $insertRequest = $pdo->prepare("
-                        INSERT INTO waste_requests (resident_id, request_type, frequency, pickup_date, collection_location, center_id, status, created_at) 
-                        VALUES (?, ?, ?, ?, ?, ?, 'PENDING', NOW())
+                        INSERT INTO waste_requests (resident_id, request_type, frequency, pickup_date, collection_location, center_id, estimated_weight, status, created_at) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?, 'PENDING', NOW())
                     ");
                     
-                    if($insertRequest->execute([$_SESSION['user_id'], $request_type, $frequency, $pickup_date, $collection_location, $center_id])){
+                    if($insertRequest->execute([$_SESSION['user_id'], $request_type, $frequency, $pickup_date, $collection_location, $center_id, $estimated_weight])){
                         echo "<script>alert('Pickup request submitted successfully!');</script>";
                     } else {
                         echo "<script>alert('Failed to submit request.');</script>";
@@ -287,6 +288,9 @@ button:hover {
 
             <label>Pickup Date</label>
             <input type="date" name="pickup_date" required>
+
+            <label>Estimated Weight (kg)</label>
+            <input type="number" name="estimated_weight" placeholder="Enter weight in kg" step="0.1" min="0" required>
 
             <input type="hidden" name="zone_name" id="hiddenZoneName" value="">
             <input type="hidden" name="collection_location" id="hiddenLocation" value="">
