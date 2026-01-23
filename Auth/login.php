@@ -34,7 +34,12 @@
             }elseif($user['role'] == 'RESIDENT'){
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['user_role'] = $user['role'];
-                 header("Location: pages/Resident/ResidentPortal.php");
+                 header("Location: /pages/Resident/ResidentPortal.php");
+                exit();
+            }elseif($user['role'] == 'CENTER_CONTROLLER'){
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['user_role'] = $user['role'];
+                 header("Location: /pages/Recycle-Center/WasteRequests.php");
                 exit();
             }
             else {
